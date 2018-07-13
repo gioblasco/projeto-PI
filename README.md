@@ -1,1 +1,1 @@
-# projeto-PI
+# Projeto de Processamento de Imagens
