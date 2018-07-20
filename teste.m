@@ -1,7 +1,7 @@
 clear all, close all, clc;
 
-[foto] = imread("placa-para.jpg");
-template = imread("./Temp_placa/R_1.jpg");
+[foto] = imread("pare-rua3.jpg");
+template = imread("./Temp_placa/teste.jpg");
 figure, imshow(foto);
 
 redplane = foto(:, :, 1);
@@ -24,19 +24,19 @@ justRed = bwareaopen(justRed, 30);
 conec = bwconncomp(justRed);
 regioes = regionprops(conec, "basic");
 
-figure, imshow(justRed);
+figure, imshow(foto);
 for i = 1:rows(regioes)
-  fronteira = regioes(i).BoundingBox;
-  placa = im2bw(rgb2gray(foto));
+  fronteira = regioes(i).BoundingBox;  
+  placa = imcrop(foto, floor(fronteira));
+  placa = im2bw(rgb2gray(placa));
   rectangle('Position', fronteira, 'EdgeColor', 'blue', 'LineWidth', 3);
-  placa = imcrop(foto, round(fronteira));
   %figure, subplot(1,2,1), imshow(placa);
   template_resized = im2bw(rgb2gray(imresize(template, size(placa))));
   correlacao(i) = corr2(placa, template_resized);
   %subplot(1,2,2), imshow(template_resized), title(num2str(correlacao));
 endfor
 
-[maior_corr, melhor_regiao] = max(correlacao);
+[maior_corr, melhor_regiao] = max(correlacao)
 fronteira = regioes(melhor_regiao).BoundingBox;
 figure, imshow(foto);
 rectangle('Position', fronteira, 'EdgeColor', 'blue', 'LineWidth', 3);
