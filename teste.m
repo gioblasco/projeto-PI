@@ -1,7 +1,7 @@
 clear all, close all, clc;
 
-[foto] = imread("placa-para.jpg");
-template = imread("./Temp_placa/R_1.jpg");
+[foto] = imread("placa-transito.jpg");
+template = imread("./Temp_placa/R_3.jpg");
 figure, imshow(foto);
 
 redplane = foto(:, :, 1);
@@ -22,18 +22,26 @@ justRed = bwareaopen(justRed, 30);
 
 %% recupera objetos que podem ser placas
 conec = bwconncomp(justRed);
-regioes = regionprops(conec, "basic");
+regioes = regionprops(conec, "basic", "Perimeter");
+figure, imshow(foto);
 
-figure, imshow(justRed);
 for i = 1:rows(regioes)
-  fronteira = regioes(i).BoundingBox;
-  placa = im2bw(rgb2gray(foto));
-  rectangle('Position', fronteira, 'EdgeColor', 'blue', 'LineWidth', 3);
-  placa = imcrop(foto, round(fronteira));
-  %figure, subplot(1,2,1), imshow(placa);
-  template_resized = im2bw(rgb2gray(imresize(template, size(placa))));
-  correlacao(i) = corr2(placa, template_resized);
-  %subplot(1,2,2), imshow(template_resized), title(num2str(correlacao));
+    fronteira = regioes(i).BoundingBox;
+    placa = imcrop(foto, ajusta_bbox(fronteira, size(foto)));
+    placa = im2bw(rgb2gray(placa));
+    % formula de Polsby-popper para calcular compactness
+    compacidade = 4*pi*regioes(i).Area/regioes(i).Perimeter^2;
+    
+    % descarta objetos com compacidade menor que 0.8
+    if compacidade >= 0.8
+      template_resized = im2bw(rgb2gray(imresize(template, size(placa))));
+      correlacao(i) = corr2(placa, template_resized);
+    else
+      correlacao(i) = -2;
+    endif
+    
+    figure, subplot(1,2,1), imshow(placa);
+    subplot(1,2,2), imshow(template_resized);
 endfor
 
 [maior_corr, melhor_regiao] = max(correlacao);
