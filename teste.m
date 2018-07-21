@@ -39,9 +39,7 @@ for i = 1:rows(regioes)
     else
       correlacao(i) = -2;
     endif
-    
-    figure, subplot(1,2,1), imshow(placa);
-    subplot(1,2,2), imshow(template_resized);
+
 endfor
 
 [maior_corr, melhor_regiao] = max(correlacao)
