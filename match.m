@@ -1,4 +1,4 @@
-function [fronteira] = match(foto, template)
+function [fronteira,maior_corr] = match(foto, template)
 
 figure, imshow(foto);
 
