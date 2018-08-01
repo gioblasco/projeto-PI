@@ -11,10 +11,11 @@ justRed = redplane - greenplane/2 - blueplane/2;
 justRed = im2bw(justRed, 0.2);
 
 %% faz fechamento para tentar deixar apenas os objetos vermelhos
-justRed = bwareaopen(justRed, 30);
+%% remove ruidos que sao menores que a 1% da imagem
+ruido = round(rows(foto)*columns(foto)*0.001);
+justRed = bwareaopen(justRed, ruido);
 justRed = imfill(justRed, 'holes');
 justRed = imclose(justRed, strel("disk", 4, 0));
-justRed = bwareaopen(justRed, 30);
 
 found = justRed;
 
