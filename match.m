@@ -1,27 +1,8 @@
-function [fronteira,maior_corr] = match(foto, template)
-
-figure, imshow(foto);
-
-redplane = foto(:, :, 1);
-greenplane = foto(:, :, 2);
-blueplane = foto(:, :, 3);
-
-% destaca objetos vermelhos (exemplo desse site: https://www.mathworks.com/examples/matlab/community/32661-find-green-object)
-justRed = redplane - greenplane/2 - blueplane/2;
-
-figure, imshow(justRed);
-justRed = im2bw(justRed, 0.2);
-
-%% faz abertura para tentar deixar apenas os objetos vermelhos
-justRed = bwareaopen(justRed, 30);
-justRed = imfill(justRed, 'holes');
-justRed = imclose(justRed, strel("disk", 4, 0));
-justRed = bwareaopen(justRed, 30);
+function [fronteira,maior_corr] = match(ident, foto, template)
 
 %% recupera objetos que podem ser placas
-conec = bwconncomp(justRed);
+conec = bwconncomp(ident);
 regioes = regionprops(conec, "basic", "Perimeter");
-figure, imshow(foto);
 
 for i = 1:rows(regioes)
     fronteira = regioes(i).BoundingBox;
