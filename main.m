@@ -1,6 +1,6 @@
 clear all, close all, clc;
 
-foto = imread("./Exemplos/pare3.jpg");
+foto = imread("./Exemplos/silencio2.JPG");
 
 figure, imshow(foto);
 
@@ -9,12 +9,12 @@ ident = preprocessing(foto);
 figure, imshow(ident);
 
 %% pega arquivos da pasta
-folder = './Templates/';
+folder = './Templates/*.jpg';
 files = dir(folder);
 
 fronteira = [];
 maior_corr = [];
-for i = 10:length(files)
+for i = 1:length(files)
 	template = imread(strcat('./Templates/', files(i).name));
 	[fronteira(i, :), maior_corr(i, 1)] = match(ident, foto, template);
 end
