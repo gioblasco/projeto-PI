@@ -27,6 +27,8 @@ switch nome_arq
 	case 'R_25d.jpg'
 		nome_placa = 'SIGA EM FRENTE OU A DIREITA';
 	case 'R_26.jpg'
+		nome_placa = 'SIGA EM FRENTE';
+	case 'R_28.jpg'
 		nome_placa = 'DUPLO SENTIDO DE CIRCULAÇÃO';
   otherwise
     nome_placa = 'PLACA NAO IDENTIFICADA';
