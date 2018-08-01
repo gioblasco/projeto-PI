@@ -1,6 +1,6 @@
 clear all, close all, clc;
 
-foto = imread("./Exemplos/pare-torto.jpg");
+foto = imread("./Exemplos/pare3.jpg");
 
 figure, imshow(foto);
 
@@ -14,7 +14,7 @@ files = dir(folder);
 
 fronteira = [];
 maior_corr = [];
-for i = 3:length(files)
+for i = 10:length(files)
 	template = imread(strcat('./Templates/', files(i).name));
 	[fronteira(i, :), maior_corr(i, 1)] = match(ident, foto, template);
 end
