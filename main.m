@@ -1,10 +1,12 @@
 clear all, close all, clc;
 
-foto = imread("./Exemplos/pare.jpg");
+foto = imread("./Exemplos/pare-torto.jpg");
 
 figure, imshow(foto);
 
 ident = preprocessing(foto);
+
+figure, imshow(ident);
 
 %% pega arquivos da pasta
 folder = './Templates/';
@@ -21,6 +23,7 @@ end
 
 nome = mapname(files(indcorr).name);
 figure, imshow(foto), title(nome);
+
 if(corr > 0)
   rectangle('Position', fronteira(indcorr, :), 'EdgeColor', 'blue', 'LineWidth', 3);
 endif
