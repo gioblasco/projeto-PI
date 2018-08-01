@@ -21,6 +21,6 @@ for i = 1:rows(regioes)
 
 endfor
 
-[maior_corr, melhor_regiao] = max(correlacao)
+[maior_corr, melhor_regiao] = max(correlacao);
 fronteira = regioes(melhor_regiao).BoundingBox;
 end

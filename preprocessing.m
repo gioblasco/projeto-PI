@@ -7,7 +7,7 @@ blueplane = foto(:, :, 3);
 % destaca objetos vermelhos (exemplo desse site: https://www.mathworks.com/examples/matlab/community/32661-find-green-object)
 justRed = redplane - greenplane/2 - blueplane/2;
 
-figure, imshow(justRed);
+%figure, imshow(justRed);
 justRed = im2bw(justRed, 0.2);
 
 %% faz fechamento para tentar deixar apenas os objetos vermelhos
