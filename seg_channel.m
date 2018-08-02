@@ -45,8 +45,8 @@ blueChannel = rgbImage(:, :, 3);
 % title('Histogram of blue channel image', 'FontSize', fontSize);
 % xlim([0 grayLevels(end)]); % Scale x axis manually.
 
-
-skinPixels = redChannel > 150 & greenChannel < 100 & blueChannel > 50;
+[maximo, index] = max(pixelCount)
+skinPixels = redChannel > 0 & greenChannel < 50 & blueChannel > 50 & blueChannel < 150;
 % Mask the image using bsxfun() function to get skin pixels.
 maskedforSkin = bsxfun(@times, rgbImage, cast(skinPixels, class(rgbImage)));
 
