@@ -19,12 +19,23 @@ else
 endif
 
 %% faz fechamento para tentar deixar apenas os objetos vermelhos
-%% remove ruidos que sao menores que a 1% da imagem
-ruido = round(rows(foto)*columns(foto)*0.002);
-justRed = bwareaopen(justRed, ruido);
 justRed = imfill(justRed, 'holes');
 justRed = imclose(justRed, strel("disk", 4, 0));
 
-found = justRed;
+% watershed - para separar objetos mt proximos
+D = bwdist(~justRed);
+D = -D;
+D(~justRed) = Inf;
+
+L = watershed(D);
+L(~justRed) = 0;
+
+%% remove ruidos que sao menores que a 2% da imagem
+ruido = round(rows(foto)*columns(foto)*0.002);
+L = bwareaopen(L, ruido);
+
+figure, imshow(L);
+
+found = L;
 
 end

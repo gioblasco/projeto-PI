@@ -1,6 +1,6 @@
 clear all, close all, clc;
 
-foto = imread("./Exemplos/placas2.jpg");
+foto = imread("./Exemplos/silencio.jpg");
 
 figure, imshow(foto);
 
