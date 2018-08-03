@@ -1,12 +1,10 @@
 clear all, close all, clc;
 
-foto = imread("./Exemplos/silencio.jpg");
+foto = imread("./Exemplos/velocidade.jpg");
 
 figure, imshow(foto);
 
 ident = preprocessing(foto);
-
-figure, imshow(ident);
 
 %% pega arquivos da pasta
 folder = './RedTemplates/*.jpg';

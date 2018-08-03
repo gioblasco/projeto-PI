@@ -8,11 +8,8 @@ for i = 1:rows(regioes)
     %descobrir se todos os pixels da imagem sao iguais
     pixels = sum(sum(placa));
     
-	placa = imfill(placa, 'holes');
-	ruido = round(rows(placa)*columns(placa)*0.01);
-	placa = bwareaopen(placa, ruido);
-
-    figure, imshow(placa), title(num2str(compacidades(i,1)));
+	  ruido = round(rows(placa)*columns(placa)*0.001);
+	  placa = bwareaopen(placa, ruido);
     
     % descarta objetos com compacidade menor que 0.8 e objetos cujos pixels são todos da mesma cor (0 ou 1)
     if ((compacidades(i,1) >= 0.8 && compacidades(i,1) < 1) || (compacidades(i,1) == maximo)) && (pixels != rows(placa)*columns(placa)) && pixels != 0
@@ -21,6 +18,8 @@ for i = 1:rows(regioes)
     else
       correlacao(i) = -2;
     endif
+	
+	figure, imshow(placa), title(num2str(correlacao(i)));
 endfor
 
 [maior_corr, melhor_regiao] = max(correlacao);

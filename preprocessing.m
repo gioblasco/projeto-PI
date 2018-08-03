@@ -18,9 +18,9 @@ else
   justRed = im2bw(justRed, 0.15);
 endif
 
-%% faz fechamento para tentar deixar apenas os objetos vermelhos
+%% faz a abertura para tentar deixar apenas os objetos vermelhos
 justRed = imfill(justRed, 'holes');
-justRed = imclose(justRed, strel("disk", 4, 0));
+justRed = imopen(justRed, strel("disk", 4, 0));
 
 % watershed - para separar objetos mt proximos
 D = bwdist(~justRed);
