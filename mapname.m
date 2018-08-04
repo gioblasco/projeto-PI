@@ -29,8 +29,8 @@ switch nome_arq
 		nome_placa = 'PROIBIDO ACIONAR BUZINA';
 	case 'R_24a.jpg'
 		nome_placa = 'SENTIDO DE CIRCULACAO';
-	case 'R_25d.jpg'
-		nome_placa = 'SIGA EM FRENTE OU A DIREITA';
+	case 'R_25c.jpg'
+		nome_placa = 'SIGA EM FRENTE OU A ESQUERDA';
 	case 'R_26.jpg'
     if proibido
       nome_placa = 'SENTIDO PROIBIDO';
