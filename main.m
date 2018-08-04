@@ -1,11 +1,8 @@
 clear all, close all, clc;
 
-foto = imread("./Exemplos/proibido_ultrapassar4.jpg");
+foto = imread("./Exemplos/placas4.jpg");
 
 figure, imshow(foto);
-
-% ajusta os valores de intensidade da foto
-%foto = imadjust(foto);
 
 ident = preprocessing(foto);
 

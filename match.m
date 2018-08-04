@@ -21,7 +21,7 @@ for i = 1:rows(regioes)
       correlacao(i) = -2;
     endif
 	
-	  figure, imshow(placa), title(num2str(correlacao(i)));
+	  %figure, imshow(placa), title(num2str(correlacao(i)));
 endfor
 
 

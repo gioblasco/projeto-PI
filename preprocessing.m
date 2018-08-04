@@ -2,6 +2,9 @@ function [found] = preprocessing(foto)
   
 % pre-processamento para encontrar os objetos vermelhos da imagem
 
+% ajusta os valores de intensidade da foto
+foto = imadjust(foto);
+
 redplane = foto(:, :, 1);
 greenplane = foto(:, :, 2);
 blueplane = foto(:, :, 3);
