@@ -39,6 +39,8 @@ switch nome_arq
     endif
 	case 'R_28.jpg'
 		nome_placa = 'DUPLO SENTIDO DE CIRCULAÇÃO';
+  case 'R_34.jpg'
+    nome_placa = 'CIRCULACAO EXCLUSIVA DE BICICLETAS';
   otherwise
     nome_placa = 'PLACA NAO IDENTIFICADA';
 endswitch
