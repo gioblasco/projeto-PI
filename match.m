@@ -1,5 +1,7 @@
 function [fronteira, maior_corr] = match(foto, template, regioes, compacidades, maximo)
 
+correlacao = [];
+fronteira = [];
 for i = 1:rows(regioes)
     fronteira = regioes(i).BoundingBox;
     placa = imcrop(foto, ajusta_bbox(fronteira, size(foto)));
@@ -19,9 +21,17 @@ for i = 1:rows(regioes)
       correlacao(i) = -2;
     endif
 	
-	  %figure, imshow(placa), title(num2str(correlacao(i)));
+	  figure, imshow(placa), title(num2str(correlacao(i)));
 endfor
 
+
 [maior_corr, melhor_regiao] = max(correlacao);
-fronteira = regioes(melhor_regiao).BoundingBox;
+
+if length(regioes) == 0
+	maior_corr = -2;
+	melhor_regiao = 1;
+else
+  fronteira = regioes(melhor_regiao).BoundingBox;
+endif
+
 end

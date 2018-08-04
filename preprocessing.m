@@ -1,20 +1,19 @@
 function [found] = preprocessing(foto)
   
-foto = imadjust(foto);
-
-figure, imshow(foto);
+% pre-processamento para encontrar os objetos vermelhos da imagem
 
 redplane = foto(:, :, 1);
 greenplane = foto(:, :, 2);
 blueplane = foto(:, :, 3);
 
-% destaca objetos vermelhos (exemplo desse site: https://www.mathworks.com/examples/matlab/community/32661-find-green-object)
+% destaca objetos vermelhos da imagem (exemplo desse site: https://www.mathworks.com/examples/matlab/community/32661-find-green-object)
 justRed = redplane - greenplane/2 - blueplane/2;
 
 %figure, imshow(justRed);
+% se o graythresh for grande o suficiente, usa ele
 if graythresh(justRed) > 0.15
   justRed = im2bw(justRed, graythresh(justRed));
-else
+else % se nao, definimos 0.15 como um threshold padrao
   justRed = im2bw(justRed, 0.15);
 endif
 
@@ -26,15 +25,12 @@ justRed = imopen(justRed, strel("disk", 4, 0));
 D = bwdist(~justRed);
 D = -D;
 D(~justRed) = Inf;
-
 L = watershed(D);
 L(~justRed) = 0;
 
 %% remove ruidos que sao menores que a 2% da imagem
 ruido = round(rows(foto)*columns(foto)*0.002);
 L = bwareaopen(L, ruido);
-
-figure, imshow(L);
 
 found = L;
 

@@ -1,5 +1,5 @@
 function [new] = ajusta_bbox(bb, foto_size)
-
+% ajusta os valores da bounding box, para fazer o recorte da placa com imcrop
 new = ones(1, 4);
 new(1) = bb(1);
 new(2) = bb(2);

@@ -1,4 +1,5 @@
-function nome_placa = mapname(nome_arq)
+function nome_placa = mapname(nome_arq, proibido)
+% mapeia os nomes das placas para cada arquivo de template
 
 switch nome_arq
 	%% placas vermelhas
@@ -15,7 +16,11 @@ switch nome_arq
 	case 'R_6a.jpg'
 		nome_placa = 'PROIBIDO ESTACIONAR';
 	case 'R_6b.jpg'
-		nome_placa = 'ESTACIONAMENTO REGULAMENTADO';
+    if proibido
+      nome_placa = 'PROIBIDO ESTACIONAR';
+    else
+		  nome_placa = 'ESTACIONAMENTO REGULAMENTADO';
+    endif
 	case 'R_7.jpg'
 		nome_placa = 'PROIBIDO ULTRAPASSAR';
 	case 'R_19.jpg'
@@ -27,7 +32,11 @@ switch nome_arq
 	case 'R_25d.jpg'
 		nome_placa = 'SIGA EM FRENTE OU A DIREITA';
 	case 'R_26.jpg'
-		nome_placa = 'SIGA EM FRENTE';
+    if proibido
+      nome_placa = 'SENTIDO PROIBIDO';
+    else
+  		nome_placa = 'SIGA EM FRENTE';
+    endif
 	case 'R_28.jpg'
 		nome_placa = 'DUPLO SENTIDO DE CIRCULAÇÃO';
   otherwise
