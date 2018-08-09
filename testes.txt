@@ -1,0 +1,35 @@
+Exemplos Certos
+
+main:
+ciclovia4.jpg
+frente_ouesquerda.jpg
+mao_dupla3.jpg
+pare3.jpg
+pare_torto.jpg
+estacione2.jpg
+proibido_estacionar4.png
+proibido_retornar.jpg
+proibido_viraresquerda.jpg
+siga.jpg (antes estava dando erro, mas com a tática do número de euler, funcionou)
+silencio2.JPG
+rua_sem_placa.jpg
+rua_sem_placa2.jpg
+stop.jpg
+
+mult:
+pare.jpg (varios objetos vermelhos, mas acha só uma placa)
+placas2.jpg
+placas3.jpg
+placas5.jpg
+placas6.jpg
+proibido_seguir2.JPG
+
+Exemplos Errados
+
+main:
+proibido_ultrapassar.jpg
+ciclovia2.jpg
+sentido.jpg
+sentido_circulacao.jpg
+
+
