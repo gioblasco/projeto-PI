@@ -12,8 +12,6 @@ function proibido = checkAllowed(foto, fronteira)
   % neuler = numobjs - numburacos
   euler = bweuler(~placa);
   
-  figure, imshow(~placa);
-  
   if euler >= 0
     proibido = 0
   else
