@@ -13,9 +13,9 @@ function proibido = checkAllowed(foto, fronteira)
   euler = bweuler(~placa);
   
   if euler >= 0
-    proibido = 0
+    proibido = 0;
   else
-    proibido = 1
+    proibido = 1;
   endif
  
 end

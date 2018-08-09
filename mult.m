@@ -1,6 +1,6 @@
 clear all, close all, clc;
 
-foto = imread("./ExemplosCertos/placas2.jpg");
+foto = imread("./ExemplosCertos/proibido_retornar4.jpg");
 
 figure, imshow(foto);
 
@@ -42,7 +42,6 @@ if(corr > 0.1 && !isempty(fronteira))
   nome = mapname(files(indcorr).name, proibido);
   title(nome);
   count = count + 1;
-  corr
   rectangle('Position', fronteira(indcorr, :), 'EdgeColor', 'blue', 'LineWidth', 3);
   ajustada = ajusta_bbox(fronteira(indcorr, :), size(foto));
   x2 = ajustada(1) + ajustada(3);
