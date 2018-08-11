@@ -1,0 +1,45 @@
+***** PASTAS *****
+
+ExemplosCertos = pasta que contém todos as imagens exemplo com as quais o algoritmo obteve resposta correta.
+
+ExemplosErrados = pasta que contém todos as imagens exemplo com as quais o algoritmo obteve resposta incorreta.
+
+RedTemplates = pasta com todas as imagens de placas usadas como templates para identificação no algoritmo.
+
+
+***** ARQUIVOS *****
+
+-- documentos principais --
+
+main.m = documento principal que executa o algoritmo para imagens que possuem 1 placa.
+
+mult.m = documento principal que executa o algoritmo para imagens que possuem mais de 1 placa.
+
+-- para executar -- 
+
+-> altere o parametro do imread na linha 4 para determinar a foto que você deseja identificar (as fotos encontram-se nas pastas citadas anteriormente)
+-> exemplos: 
+foto = imread("./ExemplosCertos/placas2.jpg");
+foto = imread("./ExemplosErrados/placas.jpg");
+
+-- funcionamento das funções internas --
+
+preprocessing.m = função que executa todo o pré-processamento: 
+    Auto-ajustamento de valores de intensidade (imadjust)
+    Segmentação de canal (vermelho)
+    Binarização (graythresh e constante)
+    Preenchimento de buracos (imfill)
+    Abertura (imopen)
+    Watershed 
+    Eliminação de ruídos (bwareaopen)
+
+
+compactness.m = função que pega as regiões e faz o calculo de compacidade de cada uma usando a formula de Polsby-Popper.
+
+match.m = função que faz o template matching das regiões.
+
+checkAllowed.m = função que verifica se a placa é de proibição checando se o numero de euler do objeto com a maior correlacao encontrada é positivo.
+
+mapname.m = função que mapeia os nomes das placas para cada arquivo de template.
+
+ajusta_bbox.m = função que ajusta os valores da bounding box.
